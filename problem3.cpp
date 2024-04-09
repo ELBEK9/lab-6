@@ -2,17 +2,25 @@
 #include <vector>
 using namespace std;
 
-void bubble_sort(vector<int>& nums, int n){
-    for(int i=0;i<n-1;++i){
-        for(int j=0;j<n-i-1;++j){
-            if(nums[j]>nums[j+1]){
-                int temp=nums[j];
-                nums[j]=nums[j+1];
-                nums[j+1]=temp;
+int find_majority(vector<int> nums, int n){
+    int maybe=nums[0];
+    int count=1;
+    
+    for(int i=1;i<n;i++){
+        if(nums[i]==maybe){
+            count++;
+        }
+        else{
+            count--;
+            if(count==0){
+                maybe=nums[i];
+                count=1;
             }
         }
     }
+    return maybe;
 }
+    
 
 int main()
 {
@@ -25,13 +33,8 @@ int main()
         cin>>nums[i];
     }
     
-    bubble_sort(nums, n);
-    int maxSum = 0;
-    for(int i=0;i<n;i+=2){
-        maxSum+=nums[i];
-    }
-    
-    cout<<maxSum;
+    int majority=find_majority(nums, n);
+    cout<<majority;
     
  
 
