@@ -11,6 +11,18 @@ int abs_value(int num){
     }
 }
 
+void bubble_sort(vector<int>& nums, int n){
+    for(int i=0;i<n-1;++i){
+        for(int j=0;j<n-i-1;++j){
+            if(nums[j]>nums[j+1]){
+                int temp=nums[j];
+                nums[j]=nums[j+1];
+                nums[j+1]=temp;
+            }
+        }
+    }
+}
+
 void find_absolute(vector<int>& nums, int n){
     int min_diff=nums[n-1] - nums[0];
     
@@ -49,7 +61,8 @@ int main()
         cin>>nums[i];
     }
     
-   find_absolute(nums, n);
+    bubble_sort(nums, n);
+    find_absolute(nums, n);
  
 
     return 0;
